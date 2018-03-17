@@ -20,9 +20,10 @@ class Twit(TimeStampedModel):
     """
         Twit Model
     """
-    location = models.CharField(max_length=100)
     twit = models.TextField(null=True)
     creator = models.ForeignKey(User, null=True, related_name='twit', on_delete=models.CASCADE)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6)
     tags = TaggableManager()
 
     @property

@@ -50,6 +50,8 @@ class TwitSerializer(TaggitSerializer, DynamicFieldsModelSerializer):
         fields = (
             'id',
             'creator',
+            'latitude',
+            'longitude',
             'twit',
             'comment',
             'vote_count',

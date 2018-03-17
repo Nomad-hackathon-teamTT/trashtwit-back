@@ -12,7 +12,6 @@ from . import serializers
 
 class ProfilePage(APIView):
 
-    # LOGIN
     def get(self, request, username, format=None):
         try:
             found_user = models.User.objects.get(username=username)
@@ -23,7 +22,6 @@ class ProfilePage(APIView):
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
-    # SIGN_UP
     def put(self, request, username, format=None):
         try:
             found_user = models.User.objects.get(username=username)
