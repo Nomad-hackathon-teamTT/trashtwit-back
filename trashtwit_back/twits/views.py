@@ -6,6 +6,9 @@ from trashtwit_back.twits import models
 from . import serializers
 from . import models
 
+# from profanityfilter import ProfanityFilter
+
+
 class Feed(APIView):
     def post(self, request, format=None):
         latitude = request.data.get("latitude")
@@ -27,6 +30,13 @@ class Twit(APIView):
 
         user = request.user
         serializer = serializers.TwitSerializer(data=request.data, partial=True)
+
+        # # TO DO. Filter non-profane twit.
+        # pf = ProfanityFilter()
+        # if pf.is_profane(request.data.get('twit')):
+        #     print("TRY AGAIN")
+        #     return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
         if serializer.is_valid():
             serializer.save(creator=user, latitude=request.data.get('latitude'), longitude=request.data.get('longitude'))
 
